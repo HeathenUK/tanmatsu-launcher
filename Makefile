@@ -1,4 +1,8 @@
+ifeq ($(shell uname -s),Darwin)
+PORT ?= $(firstword $(wildcard /dev/cu.usbmodem*))
+else
 PORT ?= /dev/ttyACM0
+endif
 
 IDF_PATH ?= $(shell cat .IDF_PATH 2>/dev/null || echo `pwd`/esp-idf)
 IDF_TOOLS_PATH ?= $(shell cat .IDF_TOOLS_PATH 2>/dev/null || echo `pwd`/esp-idf-tools)
